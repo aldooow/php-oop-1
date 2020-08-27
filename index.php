@@ -1,66 +1,62 @@
 <?php
+require_once(__DIR__ . '/User.php');
 
-class User {
-  public $name;
-  public $surname;
-  public $email;
-  public $age;
-
-  public function printInfoUser($name, $surname, $email, $age){
-    echo
-    '<b>Name: </b>' . $name . '<br>' .
-    '<b>Surname: </b>' . $surname  . '<br>' .
-    '<b>Email: </b>' . $email . '<br>' .
-    '<b>Age: </b>' . $age . '<br>'.
-    '<hr>';
-  }
-}
-
-$users = [
+$array_users = [
   [
     'name' => 'Aldo',
+    'surname' => 'Cahuana',
+    'email' => 'aldo@email.com',
+    'password' => '123',
+    'eta' => 18
+  ],
+  [
+    'name' => 'Carlo',
     'surname' => 'Rossi',
-    'email' => 'aldo@email.com',
-    'age' => 31
+    'email' => 'carlo@email.com',
+    'password' => '123',
+    'eta' => 13
   ],
-  [
-    'name' => 'Rosy',
-    'surname' => 'Romeo',
-    'email' => 'aldo@email.com',
-    'age' => 31
+    [
+    'name' => 'Rosa',
+    'surname' => 'Zampina',
+    'email' => 'rosa@email.com',
+    'password' => '123',
+    'eta' => 31
   ],
-  [
-    'name' => 'Enzo',
-    'surname' => 'Canta',
-    'email' => 'aldo@email.com',
-    'age' => 31
-  ]
+    [
+    'name' => 'Fabrizio',
+    'surname' => 'Luna',
+    'email' => 'luna@email.com',
+    'password' => '123',
+    'eta' => 64
+  ],
 ];
 
+foreach ($array_users as $user) {
+  $user = new User($user['name'], $user['surname'], $user['email'], $user['password'], $user['eta']);
+  $user->canComment();
+  $user_data = $user->getUserData();
+  ?>
+  <li>Name: <?php echo  $user_data ['name']?> </li>
+  <li>Surname: <?php echo  $user_data ['surname']?> </li>
+  <li>Email: <?php echo  $user_data ['email']?> </li>
+  <li>Eta: <?php echo  $user_data ['eta']?> </li>
+  <li>Comment: <?php echo  $user_data ['comment']?> </li>
+  <hr>
+<?php
+}
+// echo 'Lista users';
+//
+// $user = new User('Aldo', 'Cahuana', 'aldo@email.com', '123', 'yes');
+// $user->comment = true;
+// $user_data = $user->getUserData();
 
- ?>
+// var_dump($user)
+?>
 
- <!DOCTYPE html>
- <html lang="en" dir="ltr">
-   <head>
-     <meta charset="utf-8">
-     <title></title>
-   </head>
-   <body>
-
-     <h1>BLOG Boolean</h1>
-     <?php
-     foreach ($users as $user) {
-       $userBlog = new User();
-       $userBlog->name = $user['name'];
-       $userBlog->surname = $user['surname'];
-       $userBlog->email = $user['email'];
-       $userBlog->age = $user['age'];
-       $userBlog->printInfoUser($userBlog->name, $userBlog->surname, $userBlog->email, $userBlog->age );
-     }
-     ?>
-
-     
-
-   </body>
- </html>
+<!-- <ul>
+  <li>Nome: <?php echo  $user_data ['name']?> </li>
+  <li>Nome: <?php echo  $user_data ['surname']?> </li>
+  <li>Nome: <?php echo  $user_data ['email']?> </li>
+  <li>Nome: <?php echo  $user_data ['eta']?> </li>
+</ul> -->
